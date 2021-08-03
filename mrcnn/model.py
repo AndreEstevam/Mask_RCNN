@@ -2161,7 +2161,7 @@ class MaskRCNN(object):
         metrics. Then calls the Keras compile() function.
         """
         # Optimizer object
-        optimizer = self.optimizer
+		optimizer = self.optimizer
 		optimizer.learning_rate = learning_rate
         # Add Losses
         loss_names = [
