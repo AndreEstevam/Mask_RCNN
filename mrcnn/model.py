@@ -1821,7 +1821,7 @@ class MaskRCNN(object):
     The actual Keras model is in the keras_model property.
     """
 
-    def __init__(self, mode, config, model_dir):
+    def __init__(self, mode, config, model_dir, optimizer):
         """
         mode: Either "training" or "inference"
         config: A Sub-class of the Config class
@@ -1833,6 +1833,7 @@ class MaskRCNN(object):
         self.model_dir = model_dir
         self.set_log_dir()
         self.keras_model = self.build(mode=mode, config=config)
+	self.optimizer = optimizer
 
     def build(self, mode, config):
         """Build Mask R-CNN architecture.
@@ -2160,8 +2161,8 @@ class MaskRCNN(object):
         metrics. Then calls the Keras compile() function.
         """
         # Optimizer object
-        optimizer = keras.optimizers.Adam(
-            learning_rate=learning_rate)
+        optimizer = self.optimizer
+	optimizer.learning_rate = learning_rate
         # Add Losses
         loss_names = [
             "rpn_class_loss",  "rpn_bbox_loss",
