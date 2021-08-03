@@ -1833,7 +1833,7 @@ class MaskRCNN(object):
         self.model_dir = model_dir
         self.set_log_dir()
         self.keras_model = self.build(mode=mode, config=config)
-		self.optimizer = optimizer
+	self.optimizer = optimizer
 
     def build(self, mode, config):
         """Build Mask R-CNN architecture.
@@ -2161,8 +2161,8 @@ class MaskRCNN(object):
         metrics. Then calls the Keras compile() function.
         """
         # Optimizer object
-		optimizer = self.optimizer
-		optimizer.learning_rate = learning_rate
+	optimizer = self.optimizer
+	optimizer.learning_rate = learning_rate
         # Add Losses
         loss_names = [
             "rpn_class_loss",  "rpn_bbox_loss",
